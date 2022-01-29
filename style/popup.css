@@ -55,10 +55,11 @@ p.footnote {
   color: var(--tile-text-color);
   text-transform: uppercase;
   user-select: none;
-  background-color: #b38d4e;
+  background-color: #538d4e;
   height: 3rem;
   width: 3rem;
-  animation: 0.5s ease-out 0s 1 flip;
+  animation: flip;
+  animation-duration: 1s;
 }
 
 /* delay animations one by one */
@@ -79,11 +80,11 @@ p.footnote {
 }
 
 @keyframes flip {
-  0% {
-    transform: scaleY(0);
+  from {
+    transform: rotateX(-90deg);
   }
 
-  100% {
-    transform: scaleY(1);
+  to {
+    transform: rotateX(0deg);
   }
 }
