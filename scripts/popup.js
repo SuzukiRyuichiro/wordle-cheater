@@ -1,12 +1,15 @@
 const showAnswer = answer => {
-  document.getElementById("answer").innerHTML = answer.toUpperCase().split("").map(letter => {
-		return `<div class="tile">${letter}</div>`;
+  const numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+  document.getElementById("answer").innerHTML = answer.split("").map((letter, index) => {
+		return `<div class="tile" id="${numbers[index]}">${letter}</div>`;
 	}).join("");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	const key = "gameState";
+const getAnswer = () => {
+  return JSON.parse(localStorage['gameState'])?.solution
+}
 
+document.addEventListener('DOMContentLoaded', () => {
 	// Get the current tab
 	chrome.tabs.query({
 		active: true,
@@ -15,10 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		const tab = tabs[0];
 
 		// Execute script in the current tab
-		chrome.tabs.executeScript(tab.id, {
-			code: `JSON.parse(localStorage['${key}'])?.solution`
+		chrome.scripting.executeScript({
+      target: { tabId: tab.id, allFrames: true },
+			func: getAnswer,
 		}, (result) => {
-			showAnswer(result[0])
+      const answer = result[0].result
+			showAnswer(answer)
 		})
 	})
 });

@@ -58,4 +58,32 @@ p.footnote {
   background-color: #b38d4e;
   height: 3rem;
   width: 3rem;
+  animation: 0.5s ease-out 0s 1 flip;
+}
+
+/* delay animations one by one */
+#one {
+  animation-delay: 100ms;
+}
+
+#two {
+  animation-delay: 200ms;
+}
+
+#three {
+  animation-delay: 300ms;
+}
+
+#four {
+  animation-delay: 400ms;
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
 }
