@@ -1,8 +1,13 @@
+const numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
 const showAnswer = answer => {
-  const numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
   document.getElementById("answer").innerHTML = answer.split("").map((letter, index) => {
 		return `<div class="tile" id="${numbers[index]}">${letter}</div>`;
 	}).join("");
+}
+
+const flip = element => {
+  element.classList.toggle("flip");
 }
 
 const getAnswer = () => {
@@ -24,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, (result) => {
       const answer = result[0].result
 			showAnswer(answer)
+      for (let i = 0; i < 5; i++) {
+        const element = document.getElementById(numbers[i])
+        setTimeout(() => {
+          flip(element)
+        }, i * 100)
+      }
 		})
 	})
 });

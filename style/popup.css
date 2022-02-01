@@ -58,30 +58,17 @@ p.footnote {
   background-color: #538d4e;
   height: 3rem;
   width: 3rem;
+}
+
+.flip {
   animation: flip;
-  animation-duration: 1s;
-}
-
-/* delay animations one by one */
-#one {
-  animation-delay: 100ms;
-}
-
-#two {
-  animation-delay: 200ms;
-}
-
-#three {
-  animation-delay: 300ms;
-}
-
-#four {
-  animation-delay: 400ms;
+  animation-duration: 1s; 
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes flip {
   from {
-    transform: rotateX(-90deg);
+    transform: rotateX(-360deg);
   }
 
   to {
