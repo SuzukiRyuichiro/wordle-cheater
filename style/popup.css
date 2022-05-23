@@ -42,6 +42,10 @@ p.footnote {
   right: 4px;
 }
 
+p.phrase {
+  font-size: 1em;
+}
+
 .tile {
   width: 100%;
   display: inline-flex;
@@ -62,7 +66,7 @@ p.footnote {
 
 .flip {
   animation: flip;
-  animation-duration: 1s; 
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
 
