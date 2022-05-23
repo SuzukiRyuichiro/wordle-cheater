@@ -1,8 +1,9 @@
-const numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+const numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen"]
 
 const showAnswer = answer => {
-  document.getElementById("answer").innerHTML = answer.split("").map((letter, index) => {
-		return `<div class="tile" id="${numbers[index]}">${letter}</div>`;
+  document.getElementById("answer").innerHTML = [...answer].map((letter, index) => {
+		const handle = answer.length >= 12
+		return `<div class="tile ${handle ? 'mahjong' : ''}" id="${numbers[index]}">${letter}</div>`;
 	}).join("");
 }
 
@@ -24,17 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Execute script in the current tab
 		chrome.scripting.executeScript({
-      target: { tabId: tab.id, allFrames: true },
+	  target: { tabId: tab.id, allFrames: true },
 			func: getAnswer,
 		}, (result) => {
-      const answer = result[0].result
+			const answer = result[0].result
 			showAnswer(answer)
-      for (let i = 0; i < 5; i++) {
-        const element = document.getElementById(numbers[i])
-        setTimeout(() => {
-          flip(element)
-        }, i * 100)
-      }
+			for (let i = 0; i <= 13; i++) {
+				const element = document.getElementById(numbers[i])
+				setTimeout(() => {
+					flip(element)
+				}, i * 100)
+			}
 		})
 	})
 });
